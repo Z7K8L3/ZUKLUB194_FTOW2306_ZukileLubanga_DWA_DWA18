@@ -24,3 +24,52 @@
 --size-9xl:8rem
 --size-10xl:10rem
 }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: white;
+    background-color: black;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    height: 65px;
+    background: linear-gradient(90deg, #464646 1.18%, #000000 100%);
+    color: white;
+    padding: 20px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    height: 65px;
+    background: linear-gradient(90deg, #464646 1.18%, #000000 100%);
+    color: white;
+    padding: 20px;
+}
+.header--image {
+    height: 100%;
+    margin-right: 6px;
+}
+
+/* Responsive styles for iPhone SE */
+@media screen and (max-width: 320px) {
+    .header {
+      /* Adjust styles for smaller screens */
+    }
+  
+    .body-container {
+      /* Adjust styles for smaller screens */
+    }
+  
+    .footer {
+      /* Adjust styles for smaller screens */
+    }
+  }
+  
