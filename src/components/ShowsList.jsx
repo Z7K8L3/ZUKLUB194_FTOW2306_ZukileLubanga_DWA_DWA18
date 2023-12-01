@@ -28,7 +28,7 @@ export default function ShowList() {
       <h2 className='list-title'>All Shows</h2>
       <ul className='show-list'>
         {shows.map((show) => (
-          <li key={show.id}>{show.title}</li>
+          <li key={show.id}>{show.title} - Seasons: {show.seasons}</li>
         ))}
       </ul>
     </div>

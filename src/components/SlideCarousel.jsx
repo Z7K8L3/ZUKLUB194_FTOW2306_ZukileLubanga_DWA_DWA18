@@ -9,6 +9,19 @@ export default function ShowCarousel() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Define the genre list
+  const genreList = [
+    { id: 1, title: "Personal Growth" },
+    { id: 2, title: "True Crime and Investigate Journalism" },
+    { id: 3, title: "History" },
+    { id: 4, title: "Comedy" },
+    { id: 5, title: "Entertainment" },
+    { id: 6, title: "Business" },
+    { id: 7, title: "Fiction" },
+    { id: 8, title: "News" },
+    { id: 9, title: "Kids and Family" },
+  ]
+
   useEffect(() => {
     setLoading(true);
     fetch("https://podcast-api.netlify.app/shows")
@@ -21,7 +34,12 @@ export default function ShowCarousel() {
       console.error("Error fetching shows:", error);
       setLoading(false);
     });
-  }, [])
+  }, []);
+
+  const genreMapping = [];
+  genreList.forEach((genre) => {
+    genreMapping[genre.id] = genre.title;
+  });
 
   const settings = {
     dots: true,
@@ -56,6 +74,9 @@ export default function ShowCarousel() {
           <div key={show.id} className="show-slide">
             <img src={show.image} alt={show.title} />
             <h3>{show.title}</h3>
+            <p className='slide-info'>Seasons: {show.seasons}</p>
+            <p className='slide-info'>Last Updated: {new Date(show.updated).toLocaleDateString()}</p>
+            <p className='slide-info'>Genres: {show.genres.map((genreId) => genreMapping[genreId]).join(", ")}</p>
           </div>
         ))}
       </Slider>

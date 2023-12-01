@@ -75,6 +75,10 @@ body {
   bottom: -25px;
 }
 
+.slide-info {
+  color: var(--clr-powder-blue);
+}
+
 /* Show List  */
 .list-container {
   padding-top: 15px;
