@@ -99,3 +99,5 @@
 ✅ User favourites are automatically synced when logged in, ensuring that they share favourites between devices
 
 ✅ Users can share their favourites as a publicly accessible URL
+
+Netlify link : https://inquisitive-lamington-b39856.netlify.app/
