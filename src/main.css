@@ -80,4 +80,14 @@ body {
     .footer {
       /* Adjust styles for smaller screens */
     }
+
+    .show-carousel {
+      width: 100%;
+      padding: 10px;
+    }
+
+    .show-slide img {
+      width: 100%;
+      height: auto;
+    }
   }
