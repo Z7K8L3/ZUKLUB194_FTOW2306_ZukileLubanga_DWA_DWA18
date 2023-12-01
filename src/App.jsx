@@ -5,22 +5,11 @@ import Footer from "./components/Footer.jsx"
 import "./main.css"
 
 export default function App() {
-    const [user, setUser] = useState(null);
-
-    const handleLogin = (loggedInUSer) => {
-        setUser(loggedInUSer);
-    };
 
     return (
     <div>
         <Header />
-        {user ? (
-            <Body>
-                {}
-            </Body>
-        ) : (
-            <Auth onLogin={handleLogin} />
-        )}
+        <Body />
         <Footer />
     </div>
     );
