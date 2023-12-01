@@ -46,7 +46,7 @@ export default function ShowCarousel() {
   };
 
   if (loading) {
-    return <div className='loading-state'>Loading...Mics,Sound,Action!</div>
+    return <div className='loading-state'>Loading...Mics, Sound, Action!</div>
   }
 
   return (
