@@ -4,7 +4,7 @@
     --clr-true-blue: #3066BE;
     --clr-duke-blue: #090C9B;
     --clr-jet: #3C3744;
-    --clr-powder-blue: #B4C5E4;
+    --clr-powder-blue: #669bfd;
     --clr-ivory: #FBFFF1;
 }
 
@@ -43,17 +43,6 @@ body {
   margin-left: 118px;
 }
 
-/*  Footer */
-.footer {
-    bottom: 0;
-    width: 100%;
-    align-items: center;
-    height: 50px;
-    background: linear-gradient(90deg, var(--clr-true-blue) 1.18%, var(--clr-duke-blue) 100%);
-    color: var(--clr-light);
-    padding: 20px;
-}
-
 /*  Slide-Carousel */
 .show-carousel {
   width: 95%;
@@ -77,6 +66,10 @@ body {
 
 .slide-info {
   color: var(--clr-powder-blue);
+}
+
+span {
+  color: var(--clr-ivory);
 }
 
 /* Show List  */
@@ -108,6 +101,17 @@ body {
   top: 23%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/*  Footer */
+.footer {
+  bottom: 0;
+  width: 100%;
+  align-items: center;
+  height: 50px;
+  background: linear-gradient(90deg, var(--clr-true-blue) 1.18%, var(--clr-duke-blue) 100%);
+  color: var(--clr-light);
+  padding: 20px;
 }
 
 /* Responsive styles for iPhone SE */

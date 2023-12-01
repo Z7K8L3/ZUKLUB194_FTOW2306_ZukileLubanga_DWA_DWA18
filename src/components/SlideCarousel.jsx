@@ -74,9 +74,9 @@ export default function ShowCarousel() {
           <div key={show.id} className="show-slide">
             <img src={show.image} alt={show.title} />
             <h3>{show.title}</h3>
-            <p className='slide-info'>Seasons: {show.seasons}</p>
-            <p className='slide-info'>Last Updated: {new Date(show.updated).toLocaleDateString()}</p>
-            <p className='slide-info'>Genres: {show.genres.map((genreId) => genreMapping[genreId]).join(", ")}</p>
+            <p className='slide-info'>Seasons: <span>{show.seasons}</span></p>
+            <p className='slide-info'>Last Updated: <span>{new Date(show.updated).toLocaleDateString()}</span></p>
+            <p className='slide-info'>Genres: <span>{show.genres.map((genreId) => genreMapping[genreId]).join(", ")}</span></p>
           </div>
         ))}
       </Slider>
