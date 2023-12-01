@@ -24,8 +24,8 @@ export default function ShowList() {
   }
 
   return (
-    <div>
-      <h2>All Shows</h2>
+    <div className='list-container'>
+      <h2 className='list-title'>All Shows</h2>
       <ul className='show-list'>
         {shows.map((show) => (
           <li key={show.id}>{show.title}</li>
