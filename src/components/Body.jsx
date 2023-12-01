@@ -1,5 +1,5 @@
 import React from 'react';
-import ShowCarousel from './SlideCarousel';
+import ShowCarousel from "./SlideCarousel"
 
 export default function Body() {
   return (

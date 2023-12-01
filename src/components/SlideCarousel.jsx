@@ -4,8 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-export default function SlideCarousel() {
-  // Sample data, replace this with your actual show data
+export default function ShowCarousel() {
   const [shows, setShows] = useState([]);
 
   useEffect(() => {
