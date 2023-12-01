@@ -1,14 +1,26 @@
 // ShowCarousel.jsx
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
+import { Link } from "react-router-dom"
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export default function ShowCarousel() {
   const [shows, setShows] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://podcast-api.netlify.app/shows").then((response) => response.json()).then((data) => setShows(data)).catch((error) => console.error("Error fetching shows:", error));
+    setLoading(true);
+    fetch("https://podcast-api.netlify.app/shows")
+    .then((response) => response.json())
+    .then((data) => {
+      setShows(data);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error("Error fetching shows:", error);
+      setLoading(false);
+    });
   }, [])
 
   const settings = {
@@ -32,6 +44,10 @@ export default function ShowCarousel() {
       },
     ],
   };
+
+  if (loading) {
+    return <div className='loading-state'>Loading...Mics,Sound,Action!</div>
+  }
 
   return (
     <div className="show-carousel">
