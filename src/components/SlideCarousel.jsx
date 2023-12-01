@@ -1,7 +1,6 @@
 // ShowCarousel.jsx
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import { Link } from "react-router-dom"
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -42,7 +41,7 @@ export default function ShowCarousel() {
   });
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
