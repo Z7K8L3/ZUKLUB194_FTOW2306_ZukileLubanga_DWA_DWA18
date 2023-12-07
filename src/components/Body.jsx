@@ -8,7 +8,6 @@ export default function Body() {
       <h2 className="body-title">Find Your Favourite Show</h2>
       <ShowCarousel />
       <ShowList />
-      {/* Add your podcast list or other content here */}
     </main>
   );
 }

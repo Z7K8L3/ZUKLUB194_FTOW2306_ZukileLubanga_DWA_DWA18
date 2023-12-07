@@ -8,7 +8,6 @@ export default function Header() {
         className="header-image"
       />
       <h2 className='header-title'>ShowCast</h2>
-      {/* Logo, SearchBar, FavoritesButton go here */}
     </header>
   );
 }
