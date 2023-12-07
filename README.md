@@ -106,6 +106,8 @@ Netlify link : https://6571739e04c5ad4c2f95c1e3--stellar-piroshki-52f039.netlify
 
 ### User Stories and Code Explanation:
 
+0. Project is deployed to a custom Netlify URL, Netlify link : https://6571739e04c5ad4c2f95c1e3--stellar-piroshki-52f039.netlify.app/
+
 1. All views in the app display correctly on the smallest mobile device available, “iPhone SE”. This can be emulated in Chrome Dev tools.
 
 - Implementation: The responsive design is achieved by using media queries in my CSS.

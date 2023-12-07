@@ -10,7 +10,7 @@ export default function ShowCarousel() {
 
   // Define the genre list
   const genreList = [
-    { id: 1, title: "Personal Growth" },
+    { id: 1, title: "Personal Growth" }, 
     { id: 2, title: "True Crime and Investigate Journalism" },
     { id: 3, title: "History" },
     { id: 4, title: "Comedy" },
