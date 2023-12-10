@@ -211,12 +211,20 @@ input {
   cursor: pointer;
 }
 
+.form-btn:hover {
+  background-color: var(--clr-shark-blue);
+}
+
 .form-link {
   margin-top: 10px;
   display: block;
   text-align: center;
   color: var(--clr-shark-blue);
   text-decoration: none;
+}
+
+.form-link:hover {
+  color: var(--clr-powder-blue);
 }
 
 .form-container {
