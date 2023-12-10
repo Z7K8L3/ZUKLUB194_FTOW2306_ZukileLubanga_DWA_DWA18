@@ -99,6 +99,7 @@ export default function ShowList() {
             <div className="list-details">
               <h3>{show.title}</h3>
               <p>Seasons: {show.seasons}</p>
+              <p>{show.description}</p>
             </div>
           </li>
         ))}
