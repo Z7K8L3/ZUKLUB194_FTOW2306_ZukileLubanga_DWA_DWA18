@@ -2,10 +2,10 @@ import React from "react";
 import ShowCarousel from "./SlideCarousel";
 import ShowList from "./ShowsList";
 
-export default function Body() {
+export default function Body({ token }) {
   return (
     <main>
-      <h2 className="body-title">Find Your Favourite Show</h2>
+      <h2 className="body-title">Find Your Favorite Show...</h2>
       <ShowCarousel />
       <ShowList />
     </main>

@@ -5,6 +5,7 @@ export default function ShowList() {
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortBy, setSortBy] = useState("title");
+  const [filterText, setFilterText] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -21,7 +22,11 @@ export default function ShowList() {
   }, []);
 
   const sortShows = () => {
-    const sortedShows = [...shows];
+    const filteredShows = shows.filter((show) =>
+      show.title.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    const sortedShows = [...filteredShows];
 
     sortedShows.sort((a, b) => {
       if (sortBy === "title") {
@@ -44,7 +49,7 @@ export default function ShowList() {
 
   useEffect(() => {
     sortShows();
-  }, [sortOrder, sortBy, shows]);
+  }, [sortOrder, sortBy, shows, filterText]);
 
   const toggleSortOrder = () => {
     setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
@@ -54,22 +59,37 @@ export default function ShowList() {
     setSortBy(value);
   };
 
+  const handleFilterText = (e) => {
+    setFilterText(e.target.value);
+  };
+
   if (loading) {
     return <div className="loading-shows">Getting Your Shows...</div>;
   }
 
   return (
     <div className="list-container">
-      <div className="buttons">
-        <button onClick={() => handleSortBy("title")} className="sort-btns">
-          Sort by Title
-        </button>
-        <button onClick={() => handleSortBy("date")} className="sort-btns">
-          Sort by Date
-        </button>
-        <button onClick={toggleSortOrder} className="sort-btns">
-          Sort Order
-        </button>
+      <div className="filter-sort-container">
+        <div className="title-filter">
+          <label htmlFor="filterInput">FIlter by Title:</label>
+          <input
+            type="text"
+            id="filterInput"
+            value={filterText}
+            onChange={handleFilterText}
+          />
+        </div>
+        <div className="buttons">
+          <button onClick={() => handleSortBy("title")} className="sort-btns">
+            Sort by Title
+          </button>
+          <button onClick={() => handleSortBy("date")} className="sort-btns">
+            Sort by Date
+          </button>
+          <button onClick={toggleSortOrder} className="sort-btns">
+            Sort Order
+          </button>
+        </div>
       </div>
       <h2 className="list-title">All Shows</h2>
       <ul className="show-list">

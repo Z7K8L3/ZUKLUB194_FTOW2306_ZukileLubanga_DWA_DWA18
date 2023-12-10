@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../client";
 
-const Login = () => {
+const Login = ({ setToken }) => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -29,6 +29,7 @@ const Login = () => {
         password: formData.password,
       });
       console.log(data);
+      setToken(data);
       navigate("/homepage");
       if (error) throw error;
     } catch (error) {
@@ -37,7 +38,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <input placeholder="Email" name="email" onChange={handleChange} />
         <input
@@ -46,9 +47,14 @@ const Login = () => {
           type="password"
           onChange={handleChange}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="form-btn">
+          Login
+        </button>
       </form>
-      Don't have an account? <Link to="/signup">Sign Up</Link>
+      Don't have an account?{" "}
+      <Link to="/signup" className="form-link">
+        Sign Up
+      </Link>
     </div>
   );
 };

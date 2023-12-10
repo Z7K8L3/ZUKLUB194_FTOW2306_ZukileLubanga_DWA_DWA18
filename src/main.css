@@ -6,6 +6,7 @@
     --clr-jet: #3C3744;
     --clr-powder-blue: #669bfd;
     --clr-ivory: #FBFFF1;
+    --clr-shark-blue: #007bff;
 }
 
 * {
@@ -73,15 +74,15 @@ span {
   color: var(--clr-ivory);
 }
 
-/* buttons */
+/* sort-buttons */
 .sort-btns {
+  gap: 10px;
   margin-bottom: 10px;
   margin-right: 4px;
   background-color: var(--clr-true-blue);
   color: var(--clr-light);
   font-family: "Roboto", sans-serif;
   padding: 10px;
-
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -90,6 +91,24 @@ span {
 .sort-btns:hover {
   background-color: var(--clr-duke-blue);
 }
+
+.filter-sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.title-filter {
+  display: flex;
+  align-items: center;
+}
+
+.title-filter label {
+  margin-right: 10px;
+}
+
+
 
 /* Show List  */
 .list-container {
@@ -149,7 +168,7 @@ span {
 }
 
 /*  Footer */
-.footer {
+Footer {
   bottom: 0;
   width: 100%;
   align-items: center;
@@ -157,6 +176,54 @@ span {
   background: linear-gradient(90deg, var(--clr-true-blue) 1.18%, var(--clr-duke-blue) 100%);
   color: var(--clr-light);
   padding: 20px;
+}
+
+/* SignUp and Login */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid var(--clr-true-blue);
+  box-shadow: 0 0 20px var(--clr-ivory);
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--clr-light);
+  border-radius: 4px;
+}
+
+.form-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--clr-powder-blue);
+  color: var(--clr-light);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-link {
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+  color: var(--clr-shark-blue);
+  text-decoration: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
 }
 
 /* Responsive styles for iPhone SE */
@@ -167,19 +234,14 @@ span {
     }
 
     .body-title {
-      margin-top: 1px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: medium;
+      margin-top: 81px;
+      margin-left: 65px;
+      margin-right: auto;
     }
   
-    .footer {
-      bottom: 0;
-      width: 100%;
-      align-items: center;
-      height: 100px;
-      background: linear-gradient(90deg, var(--clr-true-blue) 1.18%, var(--clr-duke-blue) 100%);
-      color: var(--clr-light);
-      padding-bottom: 150px;
-    }
-
+    
     .show-carousel {
       width: 85%;
       padding: 10px;
@@ -189,7 +251,7 @@ span {
       width: 95%;
       height: auto;
     }
-
+    
     .show-list {
       grid-template-columns: repeat(2, minmax(150px, 1fr));
       margin-right: 20px;
@@ -197,5 +259,38 @@ span {
 
     .list-title {
       padding-top: 50px;
+    }
+
+    .filter-sort-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .title-filter {
+      margin-bottom: 10px;
+    }
+    
+    .title-filter label {
+      margin-right: 0;
+      margin-bottom: 5px;
+    }
+
+    .sort-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    Footer {
+      bottom: 0;
+      width: 100%;
+      align-items: center;
+      height: 100px;
+      color: var(--clr-light);
+      padding-bottom: 150px;
+    }
+
+    form {
+      width: 90%;
     }
   }
