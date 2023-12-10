@@ -99,14 +99,7 @@ export default function ShowList() {
             <div className="list-details">
               <h3>{show.title}</h3>
               <p>Seasons: {show.seasons}</p>
-              <p>
-                {show.description.length > 100
-                  ? `${show.description.slice(0, 100)}...`
-                  : show.description}
-              </p>
-              {show.description.lenth > 100 && (
-                <button className="show-more">Read More</button>
-              )}
+              <p>{show.description}</p>
             </div>
           </li>
         ))}
