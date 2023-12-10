@@ -1,15 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export default function Header() {
   return (
     <header className="header">
-      <img 
-        src="./podcast-watch.png" 
-        className="header-image"
-      />
-      <h2 className='header-title'>ShowCast</h2>
+      <img src="./podcast-watch.png" className="header-image" />
+      <h2 className="header-title">ShowCast</h2>
     </header>
   );
 }
-
-

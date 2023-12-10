@@ -1,73 +1,34 @@
-import React, { useState } from "react"
-import Header from "./components/Header.jsx"
-import Body from "./components/Body.jsx"
-import Footer from "./components/Footer.jsx"
-import { supabase } from "./client.js"
-import "./main.css"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+import React, { useState, useEffect } from "react";
+import { SignUp, Login } from "./auth";
+import { Routes, Route } from "react-router-dom";
+import "./main.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Home from "./Home";
 
-export default function App() {
-    
-    return (
+const App = () => {
+  const [token, setToken] = useState(false);
+
+  if (token) {
+    sessionStorage.setItem("token", JSON.stringify(token));
+  }
+
+  useEffect(() => {
+    if (sessionStorage.getItem("token")) {
+      let data = JSON.parse(sessionStorage.getItem("token"));
+      setToken(data);
+    }
+  }, []);
+
+  return (
     <div>
-        <Header />
-        <Body />
-        <Footer />
+      <Routes>
+        <Route path={"/signup"} element={<SignUp />} />
+        <Route path={"/"} element={<Login setToken={setToken} />} />
+        {token ? <Route path={"/homepage"} element={<Home />} /> : ""}
+      </Routes>
     </div>
-    );
-}
+  );
+};
 
-
-//     const [formData, setFormData] = useState({
-//         fullname: "", email: "",  password: ""
-//     })
-
-//     function handleChange(event) {
-//         setFormData((prevFormData) => {
-//             return{
-//                 ...prevFormData,
-//                 [event.target.name]:event.target.value
-//             }
-//         })
-//     }
-// async function handleSubmit() {
-// try {
-//     const { data, error } = await supabase.auth.signUp(
-//         {
-//           email: formData.email,
-//           password: formData.password,
-//           options: {
-//             data: {
-//               full_name: formData.fullname,
-//             }
-//           }
-//         }
-//       )
-// } catch (error) {
-//     alert(error)
-// }
-//     }
-
-    
-    {/* <form onSubmit={handleSubmit}>
-            <input 
-            placeholder="Fullname"
-            name="fullName"
-            onChange={handleChange}
-            />
-            <input 
-            placeholder="Email"
-            name="email"
-            onChange={handleChange}
-            />
-            <input 
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-            />
-
-            <button type="submit">
-                <Submit></Submit>
-            </button>
-        </form> */}
+export default App;
