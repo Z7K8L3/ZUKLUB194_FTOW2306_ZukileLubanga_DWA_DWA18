@@ -1,6 +1,6 @@
-import React from 'react';
-import ShowCarousel from "./SlideCarousel"
-import ShowList from './ShowsList';
+import React from "react";
+import ShowCarousel from "./SlideCarousel";
+import ShowList from "./ShowsList";
 
 export default function Body() {
   return (
