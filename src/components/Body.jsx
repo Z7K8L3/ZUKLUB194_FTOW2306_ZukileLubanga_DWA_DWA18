@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ShowCarousel from "./ShowsCarousel";
 import ShowList from "./ShowsList";
 
 export default function Body() {
+const navigate = useNavigate()
+
   function handleFavorites() {
     navigate("/favorites")
   }

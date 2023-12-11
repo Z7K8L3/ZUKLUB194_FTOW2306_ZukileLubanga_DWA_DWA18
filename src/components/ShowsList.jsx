@@ -2,38 +2,35 @@ import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 
 export default function ShowList() {
-  const [shows, setShows] = useState([]);
+  const [showsList, setShowsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortBy, setSortBy] = useState("title");
   const [filterText, setFilterText] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState(null)
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [originalShows, setOriginalShows] = useState([]);
+  const [filteredShows, setFilteredShows] = useState([]);
 
   const genreList = [
-    { id: 1, title: "Personal Growth" },
-    { id: 2, title: "True Crime and Investigate Journalism" },
-    { id: 3, title: "History" },
-    { id: 4, title: "Comedy" },
-    { id: 5, title: "Entertainment" },
-    { id: 6, title: "Business" },
-    { id: 7, title: "Fiction" },
-    { id: 8, title: "News" },
-    { id: 9, title: "Kids and Family" },
+    // ... (existing code)
   ];
 
-
   useEffect(() => {
-    setLoading(true);
-    fetch("https://podcast-api.netlify.app/shows")
-      .then((response) => response.json())
-      .then((data) => {
-        setShows(data);
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("https://podcast-api.netlify.app/shows");
+        const data = await response.json();
+        setOriginalShows(data);
+        setShowsList(data);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching shows:", error);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   const genreMapping = {};
@@ -41,26 +38,30 @@ export default function ShowList() {
     genreMapping[genre.id] = genre.title;
   });
 
-  const fuse = new Fuse(shows, {
+  const fuse = new Fuse(originalShows, {
     keys: ["title"],
-    threshold: 0.4
-  })
+    threshold: 0.4,
+  });
+
+  useEffect(() => {
+    sortShows();
+  }, [sortOrder, sortBy, filterText, selectedGenre]);
 
   const sortShows = () => {
-    let filteredShows = shows;
+    let filteredShowsList = [...originalShows];
 
     if (filterText.trim() !== "") {
-      const fuseResults = fuse.search(filterText)
-      filteredShows = fuseResults.map((result) => result.item)
-  }
+      const fuseResults = fuse.search(filterText);
+      filteredShowsList = fuseResults.map((result) => result.item);
+    }
 
-  if (selectedGenre !== null) {
-    filteredShows = filteredShows.filter((show) => show.genres.includes(selectedGenre))
-  }
+    if (selectedGenre !== null) {
+      filteredShowsList = filteredShowsList.filter((show) =>
+        show.genres.includes(selectedGenre)
+      );
+    }
 
-    const sortedShows = [...filteredShows];
-
-    sortedShows.sort((a, b) => {
+    filteredShowsList.sort((a, b) => {
       if (sortBy === "title") {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
@@ -76,12 +77,9 @@ export default function ShowList() {
       return 0; // No sorting
     });
 
-    setShows(sortedShows);
+    setFilteredShows(filteredShowsList);
+    setShowsList(filteredShowsList);
   };
-
-  useEffect(() => {
-    sortShows();
-  }, [sortOrder, sortBy, shows, filterText, selectedGenre]);
 
   const toggleSortOrder = () => {
     setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
@@ -92,13 +90,22 @@ export default function ShowList() {
   };
 
   const handleFilterText = (e) => {
-    setFilterText(e.target.value);
+    const newText = e.target.value;
+    setFilterText(newText);
+
+    if (newText.trim() === "") {
+      setFilteredShows(originalShows);
+      setShowsList(originalShows);
+    } else {
+      sortShows();
+    }
   };
 
   const handleGenreSort = (genreId) => {
     setSelectedGenre((prevGenre) =>
-    prevGenre === genreId ? null : genreId)
-  }
+      prevGenre === genreId ? null : genreId
+    );
+  };
 
   if (loading) {
     return <div className="loading-shows">Getting Your Shows...</div>;
@@ -133,13 +140,18 @@ export default function ShowList() {
         <div className="genres">
           {genreList.map((genre) => (
             <span
-            key={genre.id} onClick={() => handleGenreSort(genre.id)} className={selectedGenre === genre.id ? "selected" : ""}>{genre.title}</span>
+              key={genre.id}
+              onClick={() => handleGenreSort(genre.id)}
+              className={selectedGenre === genre.id ? "selected" : ""}
+            >
+              {genre.title}
+            </span>
           ))}
         </div>
       </div>
       <h2 className="list-title">All Shows</h2>
       <ul className="show-list">
-        {shows.map((show) => (
+        {showsList.map((show) => (
           <li key={show.id}>
             <img src={show.image} alt={show.title} className="list-image" />
             <div className="list-details">
