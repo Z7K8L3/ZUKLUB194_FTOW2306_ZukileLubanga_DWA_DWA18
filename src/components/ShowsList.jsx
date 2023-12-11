@@ -79,14 +79,14 @@ export default function ShowList() {
             onChange={handleFilterText}
           />
         </div>
-        <div className="buttons">
-          <button onClick={() => handleSortBy("title")} className="sort-btns">
+        <div className="sort-btns">
+          <button onClick={() => handleSortBy("title")} >
             Sort by Title
           </button>
-          <button onClick={() => handleSortBy("date")} className="sort-btns">
+          <button onClick={() => handleSortBy("date")} >
             Sort by Date
           </button>
-          <button onClick={toggleSortOrder} className="sort-btns">
+          <button onClick={toggleSortOrder} >
             Sort Order
           </button>
         </div>
