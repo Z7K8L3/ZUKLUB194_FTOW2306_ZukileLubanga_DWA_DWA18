@@ -88,6 +88,7 @@ span {
   color: var(--clr-ivory);
 }
 
+/* FILTER SYSTEM */
 /* sort-buttons */
 .sort-btns {
   gap: 10px;
@@ -122,6 +123,17 @@ span {
   margin-right: 10px;
 }
 
+.genres {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.genres span.selected {
+  background-color: var(--clr-shark-blue);
+  color: var(--clr-light);
+  margin-right: 8px;
+}
 
 
 /* Show List  */
@@ -289,6 +301,7 @@ input {
       padding-top: 50px;
     }
 
+    /* Filtering */
     .filter-sort-container {
       flex-direction: column;
       align-items: center;
@@ -307,6 +320,15 @@ input {
       display: flex;
       flex-direction: column;
       gap: 5px;
+    }
+
+    .genres {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .genres span {
+      margin-bottom: 8px; /* Adjust the margin as needed */
     }
     
     .Footer {

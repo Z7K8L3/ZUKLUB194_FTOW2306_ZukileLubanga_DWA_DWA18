@@ -6,6 +6,20 @@ export default function ShowList() {
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortBy, setSortBy] = useState("title");
   const [filterText, setFilterText] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState(null)
+
+  const genreList = [
+    { id: 1, title: "Personal Growth" },
+    { id: 2, title: "True Crime and Investigate Journalism" },
+    { id: 3, title: "History" },
+    { id: 4, title: "Comedy" },
+    { id: 5, title: "Entertainment" },
+    { id: 6, title: "Business" },
+    { id: 7, title: "Fiction" },
+    { id: 8, title: "News" },
+    { id: 9, title: "Kids and Family" },
+  ];
+
 
   useEffect(() => {
     setLoading(true);
@@ -21,10 +35,21 @@ export default function ShowList() {
       });
   }, []);
 
+  const genreMapping = {};
+  genreList.forEach((genre) => {
+    genreMapping[genre.id] = genre.title;
+  });
+
   const sortShows = () => {
-    const filteredShows = shows.filter((show) =>
-      show.title.toLowerCase().includes(filterText.toLowerCase())
-    );
+    let filteredShows = shows;
+
+    if (filterText.trim() !== "") {
+      filteredShows = shows.filter((show) => show.title.toLowerCase().includes(filterText.toLowerCase()))
+  }
+
+  if (selectedGenre !== null) {
+    filteredShows = filteredShows.filter((show) => show.genres.includes(selectedGenre))
+  }
 
     const sortedShows = [...filteredShows];
 
@@ -49,7 +74,7 @@ export default function ShowList() {
 
   useEffect(() => {
     sortShows();
-  }, [sortOrder, sortBy, shows, filterText]);
+  }, [sortOrder, sortBy, shows, filterText, selectedGenre]);
 
   const toggleSortOrder = () => {
     setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
@@ -63,6 +88,11 @@ export default function ShowList() {
     setFilterText(e.target.value);
   };
 
+  const handleGenreSort = (genreId) => {
+    setSelectedGenre((prevGenre) =>
+    prevGenre === genreId ? null : genreId)
+  }
+
   if (loading) {
     return <div className="loading-shows">Getting Your Shows...</div>;
   }
@@ -71,7 +101,7 @@ export default function ShowList() {
     <div className="list-container">
       <div className="filter-sort-container">
         <div className="title-filter">
-          <label htmlFor="filterInput">FIlter by Title:</label>
+          <label htmlFor="filterInput">Filter by Title:</label>
           <input
             type="text"
             id="filterInput"
@@ -89,6 +119,15 @@ export default function ShowList() {
           <button onClick={toggleSortOrder} className="sort-btns">
             Sort Order
           </button>
+        </div>
+      </div>
+      <div className="genre-container">
+        <h3 className="genre-sort">Filter by Genre:</h3>
+        <div className="genres">
+          {genreList.map((genre) => (
+            <span
+            key={genre.id} onClick={() => handleGenreSort(genre.id)} className={selectedGenre === genre.id ? "selected" : ""}>{genre.title}</span>
+          ))}
         </div>
       </div>
       <h2 className="list-title">All Shows</h2>

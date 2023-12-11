@@ -2,10 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-let navigate = useNavigate
+let navigate = useNavigate()
 
 function handleLogout() {
-  sessionStorage.removeItem("token")
   navigate("/")
 }
 
