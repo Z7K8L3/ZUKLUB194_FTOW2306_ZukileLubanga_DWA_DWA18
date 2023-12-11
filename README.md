@@ -12,4 +12,4 @@ The Vite React Podcast App is a fully-functional podcast platform that allows us
 - **Authentication:** Supabase
 - **Deployment:** Netlify
 
-Netlify link :
+Netlify link : https://courageous-zuccutto-bd5d18.netlify.app/
