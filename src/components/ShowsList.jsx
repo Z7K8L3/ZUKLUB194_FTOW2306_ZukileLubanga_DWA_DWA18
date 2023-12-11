@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Fuse from "fuse.js";
 
 export default function ShowList() {
   const [shows, setShows] = useState([]);
@@ -40,11 +41,17 @@ export default function ShowList() {
     genreMapping[genre.id] = genre.title;
   });
 
+  const fuse = new Fuse(shows, {
+    keys: ["title"],
+    threshold: 0.4
+  })
+
   const sortShows = () => {
     let filteredShows = shows;
 
     if (filterText.trim() !== "") {
-      filteredShows = shows.filter((show) => show.title.toLowerCase().includes(filterText.toLowerCase()))
+      const fuseResults = fuse.search(filterText)
+      filteredShows = fuseResults.map((result) => result.item)
   }
 
   if (selectedGenre !== null) {
