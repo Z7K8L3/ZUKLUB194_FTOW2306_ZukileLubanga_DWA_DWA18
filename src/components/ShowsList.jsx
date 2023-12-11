@@ -12,7 +12,15 @@ export default function ShowList() {
   const [filteredShows, setFilteredShows] = useState([]);
 
   const genreList = [
-    // ... (existing code)
+      { id: 1, title: "Personal Growth" },
+      { id: 2, title: "True Crime and Investigate Journalism" },
+      { id: 3, title: "History" },
+      { id: 4, title: "Comedy" },
+      { id: 5, title: "Entertainment" },
+      { id: 6, title: "Business" },
+      { id: 7, title: "Fiction" },
+      { id: 8, title: "News" },
+      { id: 9, title: "Kids and Family" },
   ];
 
   useEffect(() => {
@@ -111,8 +119,54 @@ export default function ShowList() {
     return <div className="loading-shows">Getting Your Shows...</div>;
   }
 
+  const [selectedShow, setSelectedShow] = useState(null);
+  const [selectedSeason, setSelectedSeason] = useState(null);
+  const [selectedEpisodes, setSelectedEpisodes] = useState([]);
+
+  const handleShowClick = async (show) => {
+    setSelectedShow(show);
+
+    try {
+      const response = await fetch(`https://podcast-api.netlify.app/id/${show.id}`);
+      const data = await response.json();
+      setSelectedSeasons(data.seasons);
+    } catch (error) {
+      console.error("Error fetching show data:", error);
+    }
+  };
+
+  const handleSeasonClick = async (season) => {
+    setSelectedSeason(season);
+
+    try {
+      const response = await fetch(`https://podcast-api.netlify.app/id/${season.id}`);
+      const data = await response.json();
+      setSelectedEpisodes(data.episodes);
+    } catch (error) {
+      console.error("Error fetching season data:", error);
+    }
+  };
+
+  const goBackToShows = () => {
+    setSelectedShow(null);
+    setSelectedSeason(null);
+    setSelectedEpisodes([]);
+  };
+
   return (
     <div className="list-container">
+      {selectedShow ? (
+        <div className="show-view">
+          <button onClick={goBackToShows} className="back-btn">
+            Back to Shows
+          </button>
+          <h2 className="list-title">{selectedShow.title}</h2>
+          <Seasons seasons={selectedSeasons} onSeasonClick={handleSeasonClick} />
+          <Episodes episodes={selectedEpisodes} />
+        </div>
+      ) : (
+        <ShowPreviews shows={showsList} onShowClick={handleShowClick} />
+      )}
       <div className="filter-sort-container">
         <div className="title-filter">
           <label htmlFor="filterInput">Filter by Title:</label>
@@ -157,6 +211,7 @@ export default function ShowList() {
             <div className="list-details">
               <h3>{show.title}</h3>
               <p>Seasons: {show.seasons}</p>
+              <p>Episodes: {show.episodes}s</p>
             </div>
           </li>
         ))}
