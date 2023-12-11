@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { SignUp, Login } from "./auth";
+import { SignUp, Login, Home } from "./auth";
 import { Routes, Route } from "react-router-dom";
-import "./main.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Home from "./Home";
 
 const App = () => {
+
   const [token, setToken] = useState(false);
 
   if (token) {

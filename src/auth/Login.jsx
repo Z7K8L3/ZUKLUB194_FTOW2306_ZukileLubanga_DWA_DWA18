@@ -28,10 +28,14 @@ const Login = ({ setToken }) => {
         email: formData.email,
         password: formData.password,
       });
-      console.log(data);
-      setToken(data);
-      navigate("/homepage");
+      
+      
       if (error) throw error;
+      console.log(data);
+      setToken(data)
+      navigate("/homepage");
+
+
     } catch (error) {
       alert(error);
     }
