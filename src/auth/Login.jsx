@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../client";
 
-const Login = ({ setToken }) => {
+const Login = () => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
