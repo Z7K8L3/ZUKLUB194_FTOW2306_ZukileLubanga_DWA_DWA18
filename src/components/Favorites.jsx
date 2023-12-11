@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { supabase } from "../client";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [sortBy, setSortBy] = useState("dateDesc");
+  const location = useLocation();
 
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const { data, error } = await supabase.from("favorites").select("*");
+        const user = supabase.auth.user();
+
+        // Check if there's a unique identifier in the URL parameters
+        const urlParams = new URLSearchParams(location.search);
+        const uniqueIdentifier = urlParams.get("uuid");
+
+        // Fetch favorites based on user ID or unique identifier
+        const { data, error } = await supabase
+          .from("favorites")
+          .select("*")
+          .eq(user ? "user_id" : "unique_identifier", user ? user.id : uniqueIdentifier);
+
         if (error) {
           throw error;
         }
@@ -19,7 +32,7 @@ export default function Favorites() {
     };
 
     fetchFavorites();
-  }, []);
+  }, [location.search, sortBy]);
 
   const sortFavorites = () => {
     // Implement sorting logic
