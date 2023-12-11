@@ -13,7 +13,7 @@ function handleLogout() {
     <header className="header">
       <img src="./favicon-32x32.png" className="header-image" />
       <h2 className="header-title">ShowCast</h2>
-      <button onClick={handleLogout}>Logout</button>
+      <button className="logout-btn" onClick={handleLogout}>Logout</button>
     </header>
   );
 }

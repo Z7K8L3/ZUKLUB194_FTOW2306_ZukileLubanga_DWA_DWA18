@@ -18,6 +18,7 @@
     top: 0;
     width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 65px;
     background: linear-gradient(90deg, var(--clr-true-blue) 1.18%, var(--clr-duke-blue) 100%);
@@ -29,6 +30,19 @@
   .header-image {
       height: 100%;
       margin-right: 8px;
+  }
+
+  .logout-btn {
+    background-color: var(--clr-powder-blue);
+    color: var(--clr-light);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .logout-btn:hover {
+    background-color: var(--clr-shark-blue);
   }
 
   /* Body Content  */
@@ -171,11 +185,17 @@ span {
 .Footer {
   bottom: 0;
   width: 100%;
+  display: flex;
   align-items: center;
+  justify-content: center; /* Center the content horizontally */
   height: 50px;
   background: linear-gradient(90deg, var(--clr-true-blue) 1.18%, var(--clr-duke-blue) 100%);
   color: var(--clr-light);
   padding: 20px;
+}
+
+.footer-link {
+  color: var(--clr-powder-blue);
 }
 
 /* SignUp and Login */
