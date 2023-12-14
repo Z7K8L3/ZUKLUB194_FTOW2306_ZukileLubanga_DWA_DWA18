@@ -42,14 +42,22 @@ const Login = () => {
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <input placeholder="Email" name="email" onChange={handleChange} />
+        
+        <input 
+          placeholder="Email" 
+          name="email" 
+          onChange={handleChange} />
+        
         <input
           placeholder="Password"
           name="password"
           type="password"
           onChange={handleChange}
         />
-        <button type="submit" className="form-btn">
+        
+        <button 
+          type="submit" 
+          className="form-btn">
           Login
         </button>
       </form>
